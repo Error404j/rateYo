@@ -1,6 +1,6 @@
 {
     "name": "rateYo"
-  , "version": "2.2.5"
+  , "version": "2.2.6"
   , "description": "A simple and flexible star rating plugin"
   , "main": "js/jquery.rateyo.js"
   , "repository": {

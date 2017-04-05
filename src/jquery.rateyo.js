@@ -44,7 +44,7 @@
     onUserSet : function() {},
     starSvg   : null
   };
-
+  var mouseEnterTimeout = null;
   //Default colors for multi-color rating
   var MULTICOLOR_OPTIONS = {
 
@@ -875,6 +875,13 @@
       showHoverFill(options.hoverFill);
 
       $node.trigger("rateyo.change", {rating: rating});
+      if(mouseEnterTimeout) {
+        clearTimeout(mouseEnterTimeout);
+      }
+      mouseEnterTimeout = setTimeout(function(){
+        onUserSet(e, rating);
+      }, 200);
+
     }
 
     function onMouseLeave () {
@@ -934,6 +941,10 @@
     }
 
     function onUserSet (e, rating) {
+      if(mouseEnterTimeout) {
+        clearTimeout(mouseEnterTimeout);
+        mouseEnterTimeout = null;
+      }
       options.onUserSet.apply(this, [rating, that]);
     }
 
